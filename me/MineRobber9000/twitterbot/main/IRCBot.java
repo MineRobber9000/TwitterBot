@@ -17,6 +17,10 @@ public class IRCBot extends PircBot {
 	protected void onMessage(String channel, String sender, String login, String hostname, String message){
 		if (message.startsWith("!tb")) {
 			String[] parts = message.split(" ");
+			if (parts.length < 2) {
+				beCocky(channel);
+				return;
+			}
 			if (parts[1].equalsIgnoreCase("read")) {
 				try {
 					Query q = new Query("from:" + parts[2]);
@@ -44,7 +48,12 @@ public class IRCBot extends PircBot {
 						System.exit(0);
 					}
 				} else {
-					beCocky(channel);
+					if (parts[1].equalsIgnoreCase("git")) {
+						sendMessage(channel, "My source code is at: http://www.github.com/MineRobber9000/TwitterBot");
+					} else {
+						beCocky(channel);
+					}
+						
 				}
 			}
 		}
