@@ -17,27 +17,42 @@ public class IRCBot extends PircBot {
 	protected void onMessage(String channel, String sender, String login, String hostname, String message){
 		if (message.startsWith("!tb")) {
 			String[] parts = message.split(" ");
-			if (parts[1].equals("read")) {
+			if (parts[1].equalsIgnoreCase("read")) {
 				try {
-					Query q = new Query("source:twitter4j @" + parts[2]);
+					Query q = new Query("from:" + parts[2]);
 					QueryResult result = t.search(q);
 					List<Status> tweets = result.getTweets();
-					boolean first = false;
+					boolean first = true;
 					for (Status tweet : tweets) {
-						if (!first) {
+						if (first) {
 							StringBuilder sb = new StringBuilder();
 							sb.append("@");
 							sb.append(tweet.getUser().getScreenName());
 							sb.append(": ");
 							sb.append(tweet.getText());
 							sendMessage(channel, sb.toString());
+							first = false;
 						}
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
+			} else {
+				if (parts[1].equalsIgnoreCase("leave")) {
+					if (sender.equals("ImANoob")) {
+						this.quitServer("Bye!!1!!11!");
+						System.exit(0);
+					}
+				} else {
+					beCocky(channel);
+				}
 			}
 		}
+	}
+
+	private void beCocky(String channel) {
+		sendMessage(channel, "I can't read minds! What do you want?");
+		sendMessage(channel, "Commands are: 'read <user>' (ex; 'read sonicretro')");
 	}
 	
 }
