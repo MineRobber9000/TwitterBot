@@ -46,6 +46,8 @@ public class IRCBot extends PircBot {
 					if (sender.equals("ImANoob")) {
 						this.quitServer("Bye!!1!!11!");
 						System.exit(0);
+					} else {
+						sendMessage(channel, getNick() + " is here to stay! Kappa");
 					}
 				} else {
 					if (parts[1].equalsIgnoreCase("git")) {
