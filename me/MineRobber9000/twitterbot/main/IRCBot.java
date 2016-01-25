@@ -53,7 +53,32 @@ public class IRCBot extends PircBot {
 					if (parts[1].equalsIgnoreCase("git")) {
 						sendMessage(channel, "My source code is at: http://www.github.com/MineRobber9000/TwitterBot");
 					} else {
-						beCocky(channel);
+						if (parts[1].equalsIgnoreCase("debug")) {
+							if (parts[2].equalsIgnoreCase("user")) {
+								try {
+									Query q = new Query("from:"+parts[3]);
+									QueryResult r = t.search(q);
+									List<Status> tweets = r.getTweets();
+									boolean first = true;
+									for (Status tweet : tweets) {
+										if (first) {
+											StringBuilder sb = new StringBuilder();
+											sb.append("Screen name: ");
+											sb.append(tweet.getUser().getScreenName());
+											sb.append("; Username: ");
+											sb.append(tweet.getUser().getName());
+											sb.append(";");
+											sendMessage(channel, sb.toString());
+											first = false;
+										}
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						} else {
+							beCocky(channel);
+						}
 					}
 						
 				}
