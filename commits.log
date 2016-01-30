@@ -1,0 +1,55 @@
+[33mcommit 3c7b57b1faf3ff0c4ff855421828aa8c3aba7235[m
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 23:09:41 2016 -0500
+
+    Who needs a commit message anyways?
+
+[33mcommit 5f2ade42ea5df247502c8f39f96028afce3bce8e[m
+Merge: 4878a81 eda4ca4
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 23:04:44 2016 -0500
+
+    Merge branch 'master' of https://github.com/MineRobber9000/TwitterBot
+
+[33mcommit 4878a81a72be4cb13781ece57dbc9c89bcc74ced[m
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 23:04:10 2016 -0500
+
+    Added git command and better command handling
+
+[33mcommit 4d003d8ccb1834280cca03872196c1ff19bf4457[m
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 22:55:53 2016 -0500
+
+    Add 'beCocky()', takes 1 string as argument
+
+[33mcommit eda4ca4777a9e1e01d8ffe5713d130e4783c6b02[m
+Author: MineRobber___T <MineRobber9000@users.noreply.github.com>
+Date:   Fri Jan 22 22:22:16 2016 -0500
+
+    Add credits
+
+[33mcommit 930b35d113f8aa92d83b654d52b869ba386d6dd6[m
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 22:20:04 2016 -0500
+
+    Added libraries too
+
+[33mcommit 977d059429acbaf701874fa6252823e1b9972e4d[m
+Merge: 26f1644 957f4e5
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 22:18:28 2016 -0500
+
+    Merge branch 'master' of https://github.com/MineRobber9000/TwitterBot
+
+[33mcommit 957f4e54d26c1b8b6c4b80ea732b9a691b670cf8[m
+Author: MineRobber___T <MineRobber9000@users.noreply.github.com>
+Date:   Fri Jan 22 22:17:33 2016 -0500
+
+    Initial commit
+
+[33mcommit 26f1644b26e5d3ab378e706dfe3fb744b4c273e4[m
+Author: MineRobber9000 <kd2bwz@yahoo.com>
+Date:   Fri Jan 22 22:16:27 2016 -0500
+
+    Initial commit

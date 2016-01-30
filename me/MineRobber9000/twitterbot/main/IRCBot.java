@@ -1,24 +1,27 @@
 package me.MineRobber9000.twitterbot.main;
 
-import java.util.List;
+import java.util.*;
 
 import org.jibble.pircbot.*;
 
 import twitter4j.*;
+import twitter4j.User;
 
 public class IRCBot extends PircBot {
 	
 	Twitter t = TwitterFactory.getSingleton();
+	boolean debug = false;
 	
 	public IRCBot(String name) {
 		this.setName(name);
+		this.setLogin(name);
 	}
 	
 	protected void onMessage(String channel, String sender, String login, String hostname, String message){
-		if (message.startsWith("!tb")) {
+		if (message.startsWith("!tb") && !message.equalsIgnoreCase("!tbdebug")) {
 			String[] parts = message.split(" ");
 			if (parts.length < 2) {
-				beCocky(channel);
+				beCocky(channel, sender);
 				return;
 			}
 			if (parts[1].equalsIgnoreCase("read")) {
@@ -40,6 +43,10 @@ public class IRCBot extends PircBot {
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
+				} finally {
+					if (debug) {
+						sendMessage("ImANoob", sender + " requested the latest tweet from: " + parts[2]);
+					}
 				}
 			} else {
 				if (parts[1].equalsIgnoreCase("leave")) {
@@ -48,47 +55,47 @@ public class IRCBot extends PircBot {
 						System.exit(0);
 					} else {
 						sendMessage(channel, getNick() + " is here to stay! Kappa");
+						if (debug) {
+							sendMessage("ImANoob", sender + " tried to make " + getNick() + " leave.");
+						}
 					}
 				} else {
 					if (parts[1].equalsIgnoreCase("git")) {
 						sendMessage(channel, "My source code is at: http://www.github.com/MineRobber9000/TwitterBot");
+						if (debug) {
+							sendMessage("ImANoob", sender + " requested the source code.");
+						}
 					} else {
 						if (parts[1].equalsIgnoreCase("debug")) {
 							if (parts[2].equalsIgnoreCase("user")) {
 								try {
-									Query q = new Query("from:"+parts[3]);
-									QueryResult r = t.search(q);
-									List<Status> tweets = r.getTweets();
-									boolean first = true;
-									for (Status tweet : tweets) {
-										if (first) {
-											StringBuilder sb = new StringBuilder();
-											sb.append("Screen name: ");
-											sb.append(tweet.getUser().getScreenName());
-											sb.append("; Username: ");
-											sb.append(tweet.getUser().getName());
-											sb.append(";");
-											sendMessage(channel, sb.toString());
-											first = false;
-										}
-									}
+									User debUser = t.showUser(parts[3]);
+									sendMessage(channel, "Username: " + debUser.getScreenName() + "; Display Name: " + debUser.getName() + "; ID: " + debUser.getScreenName() + ";");
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
 							}
 						} else {
-							beCocky(channel);
+							beCocky(channel, sender);
 						}
 					}
 						
 				}
 			}
 		}
+		if (message.equalsIgnoreCase("!tbdebug")) {
+			if (sender.equals("ImANoob")) {
+				debug = !debug;
+			}
+		}
 	}
 
-	private void beCocky(String channel) {
+	private void beCocky(String channel, String sender) {
 		sendMessage(channel, "I can't read minds! What do you want?");
 		sendMessage(channel, "Commands are: 'read <user>' (ex; 'read sonicretro')");
+		if (debug) {
+			sendMessage("ImANoob", "I was cocky to " + sender + " in " + channel);
+		}
 	}
 	
 }

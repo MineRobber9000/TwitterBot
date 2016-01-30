@@ -2,13 +2,13 @@ package me.MineRobber9000.twitterbot;
 
 import me.MineRobber9000.twitterbot.main.*;
 
-public class exec {
+public class twitch_exec {
 
 	public static void main(String[] args) throws Exception {
-		IRCBot bot = new IRCBot("TweetBot");
+		IRCBot bot = new IRCBot("MineRobberBot".toLowerCase());
 		bot.setVerbose(false);
-		bot.connect("irc.badnik.net");
-		bot.joinChannel("#Lil-G|bot");
+		bot.connect("irc.twitch.tv", 6667, args[0]);
+		bot.joinChannel("#minerobber___t");
 	}
 
 }
